@@ -1,0 +1,34 @@
+<project>
+
+	<target name="clean">
+		<delete dir="classes" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="classes" />
+		<javac srcdir="." destdir="classes" includeantruntime="false">
+			<classpath>
+				<pathelement path="json-simple-1.1.1.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+	<!--      
+    <java classname="SpamLord" classpath="classes" fork="true">
+	<arg value="../data/dev"/>
+	<arg value="../data/devGOLD"/>
+    </java> 
+    -->
+	</target>
+
+	<target name="submit" depends="run">
+		<java classname="Submit" fork="false">
+			<classpath>
+				<pathelement path="json-simple-1.1.1.jar" />
+				<pathelement path="classes" />
+			</classpath>
+		</java>
+	</target>
+
+</project>
