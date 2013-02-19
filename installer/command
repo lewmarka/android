@@ -1,3 +1,5 @@
+
+
 sudo ./makeself-2.1.5/makeself.sh contentdir testinstaller.sh "Test Isntaller" ./setup.sh
 
 ./makeself-2.1.5/makeself.sh testmakeself testsh.sh "testsh" ./startup.sh
