@@ -1,0 +1,21 @@
+1. My changed runner:
+
+Overrides the test runner object to get the results directly.
+Overrides some methods to acto what I want. 
+
+It works well in eclipse.
+
+
+2. Running the test cases through commandline:
+
+Create an ant project that runs everything via commandline.
+Set the ant properties of the project and other properties.
+
+> android avd (run the device)
+> sudo ant clean debug install test 
+debug => creates .apk package which is needed to be installed
+install => installs the application on a device
+test => run the test cases specified in build.xml and manifest.
+
+Note that changing the runner in the manifest is not enough, the runner
+is hard coded in sdk/tools/build.xml. Therefore, it should be changed. 

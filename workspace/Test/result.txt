@@ -1,0 +1,156 @@
+Buildfile: /Users/samira_tasharofi/Documents/workspace-coursera/Test/build.xml
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 21.1.0
+ [checkenv] Installed at /Users/samira_tasharofi/Documents/My Documents/TA-spring2013/adt-bundle-mac-x86_64/sdk
+
+-setup:
+     [echo] Project Name: Test
+  [gettype] Project Type: Test Application
+
+-pre-clean:
+
+clean:
+   [delete] Deleting directory /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin
+   [delete] Deleting directory /Users/samira_tasharofi/Documents/workspace-coursera/Test/gen
+   [subant] No sub-builds to iterate on
+[getlibpath] Library dependencies:
+[getlibpath] No Libraries
+   [subant] No sub-builds to iterate on
+
+-set-mode-check:
+
+-set-debug-files:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 21.1.0
+ [checkenv] Installed at /Users/samira_tasharofi/Documents/My Documents/TA-spring2013/adt-bundle-mac-x86_64/sdk
+
+-setup:
+     [echo] Project Name: Test
+  [gettype] Project Type: Test Application
+
+-set-debug-mode:
+
+-debug-obfuscation-check:
+
+-pre-build:
+
+-build-setup:
+     [echo] Resolving Build Target for Test...
+[gettarget] Project Target:   Android 4.2
+[gettarget] API level:        17
+[gettarget] WARNING: No minSdkVersion value set. Application will install on all Android versions.
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin
+    [mkdir] Created dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res
+    [mkdir] Created dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/gen
+    [mkdir] Created dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/classes
+    [mkdir] Created dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/dexedLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for Test...
+[dependency] Ordered libraries:
+     [echo] ----------
+     [echo] Building Libraries with 'debug'...
+   [subant] No sub-builds to iterate on
+     [echo] ----------
+     [echo] Building tested project at /Users/samira_tasharofi/Documents/workspace-coursera/TestGrader with 'debug'...
+   [subant] No sub-builds to iterate on
+[testedprojectclasspath] Resolved classpath:
+[testedprojectclasspath] /Users/samira_tasharofi/Documents/workspace-coursera/TestGrader/libs/android-support-v4.jar
+[testedprojectclasspath] /Users/samira_tasharofi/Documents/workspace-coursera/TestGrader/bin/classes
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+[renderscript] No RenderScript files to compile.
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Generating resource IDs...
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 5 source files to /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/classes
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+      [dex] input: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/classes
+      [dex] Converting compiled files and external libraries into /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/classes.dex...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/res
+   [crunch] To destination dir: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res
+   [crunch] Processing image to cache: /Users/samira_tasharofi/Documents/workspace-coursera/Test/res/drawable-hdpi/ic_launcher.png => /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-hdpi/ic_launcher.png
+   [crunch]   (processed image to cache entry /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-hdpi/ic_launcher.png: 87% size of source)
+   [crunch] Processing image to cache: /Users/samira_tasharofi/Documents/workspace-coursera/Test/res/drawable-ldpi/ic_launcher.png => /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-ldpi/ic_launcher.png
+   [crunch]   (processed image to cache entry /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-ldpi/ic_launcher.png: 0% size of source)
+   [crunch] Processing image to cache: /Users/samira_tasharofi/Documents/workspace-coursera/Test/res/drawable-mdpi/ic_launcher.png => /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-mdpi/ic_launcher.png
+   [crunch]   (processed image to cache entry /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-mdpi/ic_launcher.png: 78% size of source)
+   [crunch] Processing image to cache: /Users/samira_tasharofi/Documents/workspace-coursera/Test/res/drawable-xhdpi/ic_launcher.png => /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-xhdpi/ic_launcher.png
+   [crunch]   (processed image to cache entry /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/res/drawable-xhdpi/ic_launcher.png: 85% size of source)
+   [crunch] Crunched 4 PNG files to update cache
+
+-package-resources:
+     [aapt] Creating full resource package...
+
+-package:
+[apkbuilder] Current build type is different than previous build: forced apkbuilder run.
+[apkbuilder] Creating Test-debug-unaligned.apk and signing it with a debug key...
+
+-post-package:
+
+-do-debug:
+ [zipalign] Running zip align on final apk...
+     [echo] Debug Package: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/Test-debug.apk
+[propertyfile] Creating new property file: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/build.prop
+[propertyfile] Updating property file: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/build.prop
+[propertyfile] Updating property file: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/build.prop
+[propertyfile] Updating property file: /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/build.prop
+
+-post-build:
+
+debug:
+
+install:
+     [echo] Installing /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/Test-debug.apk onto default emulator or device...
+     [exec] 777 KB/s (38308 bytes in 0.048s)
+     [exec] 	pkg: /data/local/tmp/Test-debug.apk
+     [exec] Success
+   [subant] No sub-builds to iterate on
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 21.1.0
+ [checkenv] Installed at /Users/samira_tasharofi/Documents/My Documents/TA-spring2013/adt-bundle-mac-x86_64/sdk
+
+-setup:
+     [echo] Project Name: Test
+  [gettype] Project Type: Test Application
+
+-test-project-check:
+
+test:
+     [echo] Running tests ...
+     [exec] 
+     [exec] example.testgrader.test.AndroidTest:..
+     [exec] example.testgrader.test.InstrumentationTest:.
+     [exec] Test results for MyRunner=...
+     [exec] Time: 3.502
+     [exec] 
+     [exec] OK (3 tests)
+     [exec] 
+     [exec] 
+
+BUILD SUCCESSFUL
+Total time: 14 seconds

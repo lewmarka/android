@@ -1,0 +1,538 @@
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+D/ExchangeService(  635): !!! EAS ExchangeService, onCreate
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+D/ExchangeService(  635): !!! EAS ExchangeService, onStartCommand, startingUp = false, running = false
+W/ActivityManager(  291): Unable to start service Intent { act=com.android.email.ACCOUNT_INTENT } U=0: not found
+D/ExchangeService(  635): !!! Email application not found; stopping self
+W/ActivityManager(  291): Unable to start service Intent { act=com.android.email.ACCOUNT_INTENT } U=0: not found
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+D/ExchangeService(  635): !!! EAS ExchangeService, onStartCommand, startingUp = true, running = false
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+E/ActivityThread(  635): Service com.android.exchange.ExchangeService has leaked ServiceConnection com.android.emailcommon.service.ServiceProxy$ProxyConnection@40d55540 that was originally bound here
+E/ActivityThread(  635): android.app.ServiceConnectionLeaked: Service com.android.exchange.ExchangeService has leaked ServiceConnection com.android.emailcommon.service.ServiceProxy$ProxyConnection@40d55540 that was originally bound here
+E/ActivityThread(  635): 	at android.app.LoadedApk$ServiceDispatcher.<init>(LoadedApk.java:969)
+E/ActivityThread(  635): 	at android.app.LoadedApk.getServiceDispatcher(LoadedApk.java:863)
+E/ActivityThread(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1418)
+E/ActivityThread(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1407)
+E/ActivityThread(  635): 	at android.content.ContextWrapper.bindService(ContextWrapper.java:473)
+E/ActivityThread(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:157)
+E/ActivityThread(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:145)
+E/ActivityThread(  635): 	at com.android.emailcommon.service.AccountServiceProxy.getDeviceId(AccountServiceProxy.java:116)
+E/ActivityThread(  635): 	at com.android.exchange.ExchangeService.getDeviceId(ExchangeService.java:1249)
+E/ActivityThread(  635): 	at com.android.exchange.ExchangeService$7.run(ExchangeService.java:1856)
+E/ActivityThread(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:551)
+E/ActivityThread(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:549)
+E/ActivityThread(  635): 	at android.os.AsyncTask$2.call(AsyncTask.java:287)
+E/ActivityThread(  635): 	at java.util.concurrent.FutureTask.run(FutureTask.java:234)
+E/ActivityThread(  635): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+E/ActivityThread(  635): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+E/ActivityThread(  635): 	at java.lang.Thread.run(Thread.java:856)
+E/StrictMode(  635): null
+E/StrictMode(  635): android.app.ServiceConnectionLeaked: Service com.android.exchange.ExchangeService has leaked ServiceConnection com.android.emailcommon.service.ServiceProxy$ProxyConnection@40d55540 that was originally bound here
+E/StrictMode(  635): 	at android.app.LoadedApk$ServiceDispatcher.<init>(LoadedApk.java:969)
+E/StrictMode(  635): 	at android.app.LoadedApk.getServiceDispatcher(LoadedApk.java:863)
+E/StrictMode(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1418)
+E/StrictMode(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1407)
+E/StrictMode(  635): 	at android.content.ContextWrapper.bindService(ContextWrapper.java:473)
+E/StrictMode(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:157)
+E/StrictMode(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:145)
+E/StrictMode(  635): 	at com.android.emailcommon.service.AccountServiceProxy.getDeviceId(AccountServiceProxy.java:116)
+E/StrictMode(  635): 	at com.android.exchange.ExchangeService.getDeviceId(ExchangeService.java:1249)
+E/StrictMode(  635): 	at com.android.exchange.ExchangeService$7.run(ExchangeService.java:1856)
+E/StrictMode(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:551)
+E/StrictMode(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:549)
+E/StrictMode(  635): 	at android.os.AsyncTask$2.call(AsyncTask.java:287)
+E/StrictMode(  635): 	at java.util.concurrent.FutureTask.run(FutureTask.java:234)
+E/StrictMode(  635): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+E/StrictMode(  635): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+E/StrictMode(  635): 	at java.lang.Thread.run(Thread.java:856)
+W/ActivityManager(  291): Unbind failed: could not find connection for android.os.BinderProxy@41157b48
+E/ActivityThread(  635): Service com.android.exchange.ExchangeService has leaked ServiceConnection com.android.emailcommon.service.ServiceProxy$ProxyConnection@40cdfb40 that was originally bound here
+E/ActivityThread(  635): android.app.ServiceConnectionLeaked: Service com.android.exchange.ExchangeService has leaked ServiceConnection com.android.emailcommon.service.ServiceProxy$ProxyConnection@40cdfb40 that was originally bound here
+E/ActivityThread(  635): 	at android.app.LoadedApk$ServiceDispatcher.<init>(LoadedApk.java:969)
+E/ActivityThread(  635): 	at android.app.LoadedApk.getServiceDispatcher(LoadedApk.java:863)
+E/ActivityThread(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1418)
+E/ActivityThread(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1407)
+E/ActivityThread(  635): 	at android.content.ContextWrapper.bindService(ContextWrapper.java:473)
+E/ActivityThread(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:157)
+E/ActivityThread(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:145)
+E/ActivityThread(  635): 	at com.android.emailcommon.service.ServiceProxy.test(ServiceProxy.java:191)
+E/ActivityThread(  635): 	at com.android.exchange.ExchangeService$7.run(ExchangeService.java:1850)
+E/ActivityThread(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:551)
+E/ActivityThread(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:549)
+E/ActivityThread(  635): 	at android.os.AsyncTask$2.call(AsyncTask.java:287)
+E/ActivityThread(  635): 	at java.util.concurrent.FutureTask.run(FutureTask.java:234)
+E/ActivityThread(  635): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+E/ActivityThread(  635): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+E/ActivityThread(  635): 	at java.lang.Thread.run(Thread.java:856)
+E/StrictMode(  635): null
+E/StrictMode(  635): android.app.ServiceConnectionLeaked: Service com.android.exchange.ExchangeService has leaked ServiceConnection com.android.emailcommon.service.ServiceProxy$ProxyConnection@40cdfb40 that was originally bound here
+E/StrictMode(  635): 	at android.app.LoadedApk$ServiceDispatcher.<init>(LoadedApk.java:969)
+E/StrictMode(  635): 	at android.app.LoadedApk.getServiceDispatcher(LoadedApk.java:863)
+E/StrictMode(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1418)
+E/StrictMode(  635): 	at android.app.ContextImpl.bindService(ContextImpl.java:1407)
+E/StrictMode(  635): 	at android.content.ContextWrapper.bindService(ContextWrapper.java:473)
+E/StrictMode(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:157)
+E/StrictMode(  635): 	at com.android.emailcommon.service.ServiceProxy.setTask(ServiceProxy.java:145)
+E/StrictMode(  635): 	at com.android.emailcommon.service.ServiceProxy.test(ServiceProxy.java:191)
+E/StrictMode(  635): 	at com.android.exchange.ExchangeService$7.run(ExchangeService.java:1850)
+E/StrictMode(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:551)
+E/StrictMode(  635): 	at com.android.emailcommon.utility.Utility$2.doInBackground(Utility.java:549)
+E/StrictMode(  635): 	at android.os.AsyncTask$2.call(AsyncTask.java:287)
+E/StrictMode(  635): 	at java.util.concurrent.FutureTask.run(FutureTask.java:234)
+E/StrictMode(  635): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+E/StrictMode(  635): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+E/StrictMode(  635): 	at java.lang.Thread.run(Thread.java:856)
+W/ActivityManager(  291): Unbind failed: could not find connection for android.os.BinderProxy@41102220
+D/dalvikvm(  635): GC_CONCURRENT freed 410K, 20% free 2499K/3120K, paused 5ms+3ms, total 54ms
+D/AndroidRuntime( 1779): 
+D/AndroidRuntime( 1779): >>>>>> AndroidRuntime START com.android.internal.os.RuntimeInit <<<<<<
+D/AndroidRuntime( 1779): CheckJNI is ON
+D/dalvikvm( 1779): Trying to load lib libjavacore.so 0x0
+D/dalvikvm( 1779): Added shared lib libjavacore.so 0x0
+D/dalvikvm( 1779): Trying to load lib libnativehelper.so 0x0
+D/dalvikvm( 1779): Added shared lib libnativehelper.so 0x0
+D/AndroidRuntime( 1779): Calling main entry com.android.commands.pm.Pm
+W/Trace   (  493): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  493): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  493): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  493): Unexpected value from nativeGetEnabledTags: 0
+W/ActivityManager(  291): No content provider found for permission revoke: file:///data/local/tmp/Test-debug.apk
+W/ActivityManager(  291): No content provider found for permission revoke: file:///data/local/tmp/Test-debug.apk
+I/PackageManager(  291): Copying native libraries to /data/app-lib/vmdl453129221
+I/PackageParser(  291): example.testgrader.test: compat added android.permission.WRITE_EXTERNAL_STORAGE android.permission.READ_PHONE_STATE
+I/PackageManager(  291): Removing non-system package:example.testgrader.test
+I/ActivityManager(  291): Force stopping package example.testgrader.test appid=10048 user=-1
+I/PackageManager(  291): Package example.testgrader.test codePath changed from /data/app/example.testgrader.test-2.apk to /data/app/example.testgrader.test-1.apk; Retaining data and using new
+I/PackageManager(  291): Linking native library dir for /data/app/example.testgrader.test-1.apk
+I/PackageManager(  291): Running dexopt on: example.testgrader.test
+D/dalvikvm( 1790): DexOpt: load 20ms, verify+opt 2ms, 85836 bytes
+I/ActivityManager(  291): Force stopping package example.testgrader.test appid=10048 user=-1
+W/PackageManager(  291): Code path for pkg : example.testgrader.test changing from /data/app/example.testgrader.test-2.apk to /data/app/example.testgrader.test-1.apk
+W/PackageManager(  291): Resource path for pkg : example.testgrader.test changing from /data/app/example.testgrader.test-2.apk to /data/app/example.testgrader.test-1.apk
+D/PackageManager(  291): New package installed in /data/app/example.testgrader.test-1.apk
+I/ActivityManager(  291): Force stopping package example.testgrader.test appid=10048 user=0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  378): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  378): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  429): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  429): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  635): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  493): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  493): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  779): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  779): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  764): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  764): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1563): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1563): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1546): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1546): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1583): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1583): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  393): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  393): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/PackageManager(  291): generateServicesMap() for 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  378): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  378): Unexpected value from nativeGetEnabledTags: 0
+I/InputReader(  291): Reconfiguring input devices.  changes=0x00000010
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/DevicePolicyManagerService(  291): Handling package changes for user 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/PackageManager(  291): generateServicesMap() for 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/PackageManager(  291): generateServicesMap() for 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/PackageManager(  291): generateServicesMap() for 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  378): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  378): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/InputReader(  291): Reconfiguring input devices.  changes=0x00000010
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/ApplicationContext(  749): Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1352 android.content.ContextWrapper.startService:450 android.content.ContextWrapper.startService:450 
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  764): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  764): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  462): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  749): Unexpected value from nativeGetEnabledTags: 0
+W/InputMethodManagerService(  291): Found no subtypes in a system IME: com.android.inputmethod.pinyin
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  779): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  779): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+D/dalvikvm(  291): GC_EXPLICIT freed 1840K, 38% free 10503K/16860K, paused 176ms+264ms, total 687ms
+D/AndroidRuntime( 1779): Shutting down VM
+D/dalvikvm( 1779): GC_CONCURRENT freed 100K, 18% free 469K/572K, paused 1ms+2ms, total 13ms
+D/jdwp    ( 1779): Got wake-up signal, bailing out of select
+D/dalvikvm( 1779): Debugger has detached; object registry had 1 entries
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  779): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  779): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/RecognitionManagerService(  291): no available voice recognition services found for user 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/dalvikvm(  403): GC_CONCURRENT freed 1417K, 23% free 6954K/8948K, paused 25ms+13ms, total 99ms
+D/dalvikvm(  403): WAIT_FOR_CONCURRENT_GC blocked 78ms
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/AndroidRuntime( 1797): 
+D/AndroidRuntime( 1797): >>>>>> AndroidRuntime START com.android.internal.os.RuntimeInit <<<<<<
+D/AndroidRuntime( 1797): CheckJNI is ON
+D/dalvikvm( 1797): Trying to load lib libjavacore.so 0x0
+D/dalvikvm( 1797): Added shared lib libjavacore.so 0x0
+D/dalvikvm( 1797): Trying to load lib libnativehelper.so 0x0
+D/dalvikvm( 1797): Added shared lib libnativehelper.so 0x0
+D/AndroidRuntime( 1797): Calling main entry com.android.commands.am.Am
+D/dalvikvm( 1797): Note: class Landroid/app/ActivityManagerNative; has 156 unimplemented (abstract) methods
+I/ActivityManager(  291): Force stopping package example.testgrader appid=10047 user=0
+D/dalvikvm( 1807): Not late-enabling CheckJNI (already on)
+I/ActivityManager(  291): Start proc example.testgrader for added application example.testgrader: pid=1807 uid=10047 gids={50047, 1028}
+E/Trace   ( 1807): error opening trace file: No such file or directory (2)
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+I/System.out( 1807): On Create: HEYYYYY!
+D/dalvikvm( 1807): GC_CONCURRENT freed 292K, 14% free 2570K/2980K, paused 6ms+11ms, total 74ms
+D/dalvikvm( 1807): GC_CONCURRENT freed 484K, 20% free 2536K/3140K, paused 5ms+6ms, total 60ms
+I/System.out( 1807): Create RUNNER! 
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+I/System.out( 1807): On Start: HEYYYYY!
+W/dalvikvm( 1807): method Landroid/test/InstrumentationTestRunner$StringResultPrinter;.print incorrectly overrides package-private method with same name in Ljunit/textui/ResultPrinter;
+I/TestRunner( 1807): started: testAdd(example.testgrader.test.AndroidTest)
+I/TestRunner( 1807): finished: testAdd(example.testgrader.test.AndroidTest)
+I/TestRunner( 1807): passed: testAdd(example.testgrader.test.AndroidTest)
+I/TestRunner( 1807): started: testAndroidTestCaseSetupProperly(example.testgrader.test.AndroidTest)
+I/TestRunner( 1807): finished: testAndroidTestCaseSetupProperly(example.testgrader.test.AndroidTest)
+I/TestRunner( 1807): passed: testAndroidTestCaseSetupProperly(example.testgrader.test.AndroidTest)
+I/TestRunner( 1807): started: testHasToggleButtons(example.testgrader.test.InstrumentationTest)
+I/ActivityManager(  291): START u0 {act=android.intent.action.MAIN flg=0x10000000 cmp=example.testgrader/.MainActivity} from pid 1807
+W/WindowManager(  291): Failure taking screenshot for (328x583) to layer 21000
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+E/SurfaceFlinger(   36): ro.sf.lcd_density must be defined as a build property
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/Choreographer(  291): Skipped 47 frames!  The application may be doing too much work on its main thread.
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/System.out( 1807): Hey!!!!
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/Choreographer(  291): Skipped 62 frames!  The application may be doing too much work on its main thread.
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/dalvikvm( 1807): GC_CONCURRENT freed 267K, 16% free 2656K/3140K, paused 40ms+9ms, total 263ms
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+E/SurfaceFlinger(   36): ro.sf.lcd_density must be defined as a build property
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+D/gralloc_goldfish( 1807): Emulator without GPU emulation detected.
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/ActivityManager(  291): Displayed example.testgrader/.MainActivity: +2s964ms
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/WindowManager(  291): Failure taking screenshot for (328x583) to layer 21005
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+D/dalvikvm( 1807): GC_EXPLICIT freed 22K, 15% free 2670K/3140K, paused 6ms+18ms, total 156ms
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/dalvikvm( 1807): GC_EXPLICIT freed 2K, 16% free 2668K/3140K, paused 3ms+4ms, total 152ms
+I/TestRunner( 1807): finished: testHasToggleButtons(example.testgrader.test.InstrumentationTest)
+I/TestRunner( 1807): passed: testHasToggleButtons(example.testgrader.test.InstrumentationTest)
+I/System.out( 1807): ****** TEST CASE: testAdd
+I/System.out( 1807): ****** TEST CASE: testAndroidTestCaseSetupProperly
+I/System.out( 1807): ****** TEST CASE: testHasToggleButtons
+I/System.out( 1807): ****** FAILED COUNT: 0
+I/System.out( 1807): ****** PASSED COUNT: 3
+I/Choreographer(  291): Skipped 47 frames!  The application may be doing too much work on its main thread.
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+D/AndroidRuntime( 1797): Shutting down VM
+D/dalvikvm( 1797): GC_CONCURRENT freed 110K, 20% free 471K/584K, paused 0ms+1ms, total 12ms
+D/jdwp    ( 1797): Got wake-up signal, bailing out of select
+D/dalvikvm( 1797): Debugger has detached; object registry had 1 entries
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   ( 1807): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/ActivityManager(  291): Force stopping package example.testgrader appid=10047 user=0
+I/ActivityManager(  291): Killing proc 1807:example.testgrader/u0a10047: force stop example.testgrader
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+I/Choreographer(  403): Skipped 79 frames!  The application may be doing too much work on its main thread.
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+I/WindowState(  291): WIN DEATH: Window{40f393a0 u0 example.testgrader/example.testgrader.MainActivity}
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  403): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  291): Unexpected value from nativeGetEnabledTags: 0
+W/Trace   (  621): Unexpected value from nativeGetEnabledTags: 0
