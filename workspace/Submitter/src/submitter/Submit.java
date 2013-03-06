@@ -1,8 +1,8 @@
-
 package submitter;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-
-
 public class Submit {
 
-	String[] partIDs = new String[] { "XoMTYOiK" };
+	String[] partIDs = new String[] { "hvSBXixt" };
 	String[] partNames = new String[] { "Part1" };
+
+	String logPath = "/Users/samira_tasharofi/Documents/workspace-coursera/Test/logcat.txt";
+	String runnerScriptPath = "/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/testrunner.sh";
+	String deviceScriptPath = "/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/devicechecker.sh";
 
 	public void submit(Integer partId) {
 		System.out.println(String.format("==\n== Submitting Solutions"
@@ -81,7 +83,7 @@ public class Submit {
 			System.out.println(String.format(
 					"\n== Submitted Homework %s - Part %s ", homework_id(),
 					partNames[part]));
-			System.out.println("== " + result.trim());
+			System.out.println("== " + result);
 			if (result
 					.trim()
 					.equals("Exception: We could not verify your username / password, please try again. (Note that your password is case-sensitive.)")) {
@@ -92,7 +94,7 @@ public class Submit {
 	}
 
 	private String homework_id() {
-		return "Test";
+		return "Assignment1";
 	}
 
 	private List<List<String>> sources() {
@@ -140,25 +142,39 @@ public class Submit {
 	// }
 
 	protected String output(int partId, String ch_aux) {
-		
+
 		Runtime rt = Runtime.getRuntime();
 		try {
-			//String path = "/Users/samira_tasharofi/Documents/My Documents/TA-spring2013/android/runner/";
-//			
-//			Process avd = 
-//				     rt.exec("/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/devicerunner.sh");
 
-			Process testrunner = 
-		     rt.exec("/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/testrunner.sh");
+			Process deviceChecker = rt.exec(deviceScriptPath);
+			deviceChecker.waitFor();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					deviceChecker.getInputStream()));
 			
+			//this line is "List of devices attached"
+			String line = reader.readLine();
+			
+			/*The next lines indicate the list of devices running.
+			 * If there is no second line, no device is attached, 
+			 * then throw error and exit.
+			 */
+			line = reader.readLine();
+			if (line == null || !line.contains("device")) {
+				System.out.println("line"+line);
+				System.err.println("Error! No device is attached! Please run a device and try again.");
+				return "";
+			}
+
+			Process testrunner = rt.exec(runnerScriptPath);
 			testrunner.waitFor();
-			
-//			Process logSaver = 
-//				     rt.exec("/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/savelog.sh");
-//					
-//			logSaver.waitFor();
 			int r = testrunner.exitValue();
-			
+			reader = new BufferedReader(new InputStreamReader(
+					testrunner.getErrorStream()));
+			String errorLine;
+			while ((errorLine = reader.readLine()) != null) {
+				System.err.println(errorLine);
+			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -167,30 +183,52 @@ public class Submit {
 			e.printStackTrace();
 		}
 
-		
-		
-		// SpamLord vader = new SpamLord();
-		//
-		// PrintStream out = System.out;
-		// System.setOut(new PrintStream(new OutputStream() {
-		// @Override public void write(int b) throws IOException {}
-		// }));
-		//
-		// List<SpamLord.Contact> guesses = new ArrayList<SpamLord.Contact>();
-		// if (partId == 1) {
-		// System.err.println("== Running your code ...");
-		// guesses = vader.processDir("../data/dev");
-		// } else if (partId == 2) {
-		// System.err.println("== Running your code ...");
-		// guesses = vader.processFile("foo", new BufferedReader(new
-		// StringReader(ch_aux)));
-		// }
-		// System.err.println("== Finished running your code");
-		// String jsonGuesses = writeContactsToJSON(guesses);
-		// System.setOut(out);
-		// return jsonGuesses;
-		
-		return "samira";
+		String result = parseLogFile(logPath);
+
+		return result;
+	}
+
+	private String parseLogFile(String log) {
+
+		String result = "";
+		String returnedResult = "";
+
+		String testCaseTag = "****** TEST CASE: ";
+		String failedTag = "****** FAILED COUNT: ";
+		String passTag = "****** PASSED COUNT: ";
+
+		try {
+			BufferedReader logReader = new BufferedReader(new FileReader(log));
+			String line;
+
+			try {
+				while ((line = logReader.readLine()) != null) {
+					if (line.contains(failedTag)) {
+						result += "F:"
+								+ line.substring(line.indexOf(failedTag)
+										+ failedTag.length());
+						result += ";";
+					}
+					if (line.contains(passTag)) {
+						returnedResult = line.substring(line.indexOf(passTag)
+								+ passTag.length());
+						result += "P:" + returnedResult;
+					}
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("The result is " + result);
+
+		// TODO Auto-generated method stub
+		return returnedResult;
 	}
 
 	// ========================= CHALLENGE HELPERS =========================
@@ -334,7 +372,13 @@ public class Submit {
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					connection.getInputStream()));
-			str = in.readLine();
+
+			String line = "";
+			str = "";
+			while ((line = in.readLine()) != null) {
+				str += line + " ";
+			}
+			// str = in.readLine();
 			in.close();
 
 		} catch (Exception e) {
@@ -402,10 +446,6 @@ public class Submit {
 		String encoded = new String(encBytes);
 		return encoded;
 	}
-	
-	
-
-
 
 	public static void main(String[] args) {
 
