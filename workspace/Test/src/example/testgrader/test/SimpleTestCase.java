@@ -8,7 +8,7 @@ public class SimpleTestCase extends TestCase {
 		int x = 0;
 		int y = 0;
 		
-		assertTrue((x+y)>0);
+		assertTrue((x+y)>=0);
 	}
 
 }

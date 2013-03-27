@@ -19,6 +19,7 @@ public class InstrumentationTest extends ActivityInstrumentationTestCase2<MainAc
 	}
 	
     public void testHasToggleButtons() {
+    	
 
       int numberOfToggleButtons = countWidgets(Button.class);
 

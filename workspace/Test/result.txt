@@ -79,7 +79,7 @@ clean:
 -pre-compile:
 
 -compile:
-    [javac] Compiling 5 source files to /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/classes
+    [javac] Compiling 6 source files to /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/classes
 
 -post-compile:
 
@@ -125,7 +125,7 @@ debug:
 
 install:
      [echo] Installing /Users/samira_tasharofi/Documents/workspace-coursera/Test/bin/Test-debug.apk onto default emulator or device...
-     [exec] 777 KB/s (38308 bytes in 0.048s)
+     [exec] 769 KB/s (38306 bytes in 0.048s)
      [exec] 	pkg: /data/local/tmp/Test-debug.apk
      [exec] Success
    [subant] No sub-builds to iterate on
@@ -145,12 +145,24 @@ test:
      [exec] 
      [exec] example.testgrader.test.AndroidTest:..
      [exec] example.testgrader.test.InstrumentationTest:.
-     [exec] Test results for MyRunner=...
-     [exec] Time: 3.502
+     [exec] example.testgrader.test.SimpleTestCase:
+     [exec] Failure in testAdd:
+     [exec] junit.framework.AssertionFailedError
+     [exec] 	at example.testgrader.test.SimpleTestCase.testAdd(SimpleTestCase.java:11)
+     [exec] 	at java.lang.reflect.Method.invokeNative(Native Method)
+     [exec] 	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:190)
+     [exec] 	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:175)
+     [exec] 	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:555)
+     [exec] 	at example.testgrader.test.MyRunner.onStart(MyRunner.java:29)
+     [exec] 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1661)
      [exec] 
-     [exec] OK (3 tests)
+     [exec] Test results for MyRunner=....F
+     [exec] Time: 3.522
+     [exec] 
+     [exec] FAILURES!!!
+     [exec] Tests run: 4,  Failures: 1,  Errors: 0
      [exec] 
      [exec] 
 
 BUILD SUCCESSFUL
-Total time: 14 seconds
+Total time: 15 seconds
