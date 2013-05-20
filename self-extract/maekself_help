@@ -1,0 +1,21 @@
+
+
+Makeself in available here:
+http://megastep.org/makeself/
+
+* To create an archive:
+
+Example: creating archive "test.sh" from the files in ./testmakeself/android/:
+
+cd makeself-2.1.5/
+./makeself.sh --notemp ../testmakeself/android/  ../test.sh "android test" ../testmakeself/startup.sh
+
+The startup.sh is a script which is run before installation. In the eaxmple, it asks for the
+confirmation to extract the files.
+
+* To extract the archive:
+cd ..
+./test.sh
+
+If the directory exists, it asks for the confirmation to replace the files. Otherwise,
+it creates and extract the files in ./android directory
