@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Doppio: A JVM in Coffeescript</title>
+  <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type="text/css" href="browser/style.css">
+{{#release}}
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="compressed.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19272049-5']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+{{/release}}
+{{^release}}
+  <script type="text/javascript" src="vendor/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="vendor/_.js"></script>
+  <script type="text/javascript" src="vendor/gLong.js"></script>
+  <script type="text/javascript" src="browser/util.js"></script>
+  <script type="text/javascript" src="browser/node.js"></script>
+  <script type="text/javascript" src="src/logging.js"></script>
+  <script type="text/javascript" src="src/exceptions.js"></script>
+  <script type="text/javascript" src="src/util.js"></script>
+  <script type="text/javascript" src="src/java_object.js"></script>
+  <script type="text/javascript" src="src/opcodes.js"></script>
+  <script type="text/javascript" src="src/attributes.js"></script>
+  <script type="text/javascript" src="src/ConstantPool.js"></script>
+  <script type="text/javascript" src="src/disassembler.js"></script>
+  <script type="text/javascript" src="src/ClassData.js"></script>
+  <script type="text/javascript" src="src/natives.js"></script>
+  <script type="text/javascript" src="src/methods.js"></script>
+  <script type="text/javascript" src="src/runtime.js"></script>
+  <script type="text/javascript" src="src/ClassLoader.js"></script>
+  <script type="text/javascript" src="src/jvm.js"></script>
+  <script type="text/javascript" src="src/testing.js"></script>
+  <script type="text/javascript" src="vendor/jquery.console.js"></script>
+  <script type="text/javascript" src="browser/untar.js"></script>
+  <script type="text/javascript" src="browser/frontend.js"></script>
+  <script type="text/javascript" src="vendor/ace/src/ace.js"></script>
+  <script type="text/javascript" src="vendor/ace/src/mode-java.js"></script>
+  <script type="text/javascript" src="vendor/ace/src/theme-twilight.js"></script>
+{{/release}}
+</head>
+<body>
+<div id='progress-container'>
+  <div id='progress-box'>
+    <div id='progress' class='progress progress-striped active' style='background:#ccc'>
+      <div class='bar' style='width:0%'></div>
+    </div>
+    <div id='preloading-file'></div>
+  </div>
+</div>
+<div id='overlay'>
+</div>
+{{> _navbar}}
+
+
+<div id='main'>
+  <header class='page-header'>
+  <h1 id='title' style='float:left;' class='bitter'>Doppio
+    <span class='build-info'>
+      <a href="https://github.com/int3/doppio/commit/{{git_hash}}">
+        @{{git_short_hash}}</a>, built {{date}}
+    </span>
+  </h1>
+    <!-- File upload button strategy credit goes davist11: https://gist.github.com/645816 -->
+<!--    <span class="file-wrapper" style='margin: 8px 0 3px 0;float:right;'>
+      <input type="file" name="file" id="file" multiple />
+      <span class="button">Upload Files...</span>
+    </span>
+    <h1>&nbsp;</h1>
+  </header>-->
+  <div id='ide' style='display:none'>
+
+    <div id='source'></div>
+    <div style='float:right; width:28%; height:460px; display:block;'>
+      <input type='text' id='testfilename' style='width:100%; class='input-xlarge'/>
+      <textarea id='testcode' style='width:100%; height:93%;'></textarea>
+    </div>
+    
+    <!-- the Ace editor affects document flow weirdly, hence this hack
+    <div style='height:70%'></div>-->
+    <form class='form-inline' style='margin: 8px 0 3px 0'>
+      <!--<label for='filename' class='control-label'>Save As:</label>
+      <input type='text' id='filename' class='input-xlarge'/>-->
+      <textarea id='mystdout' style="width:69%; height:200px;">
+      </textarea>
+	  <button id='save_btn' class='btn btn-mini btn-primary'>Compile &amp; Run</button>
+	  <button id='close_btn' class='btn btn-mini btn-primary'>Close</button>
+      <!--<div id="mystdout" style="width:75%; border: 1px solid black; vertical-align:top;">
+      <table style='width:100%; height:200px; border: 0;'>
+      	<tr>
+      		<td id="mystdout" style="width:75%; border: 1px solid black; vertical-align:top;">
+      		</td>
+      		<td style="vertical-align:top;">
+		    	<button id='save_btn' class='btn btn-mini btn-primary'>Compile &amp; Run</button>
+				<button id='close_btn' class='btn btn-mini btn-primary'>Close Without Saving</button>
+			</td>
+		</tr>
+      </table>-->
+    </form>
+  </div>
+
+  <div id='console' style='display:none'><div id="consoleUnderlay"><img src="browser/coffee.png"/></div></div>
+</div>
+{{#release}}
+<script type="text/javascript" src="ace.js"></script>
+{{/release}}
+</body>
+</html>

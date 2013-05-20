@@ -1,29 +1,17 @@
 package example.testgrader.test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
-import example.testgrader.MainActivity;
 
 import junit.framework.TestCase;
 import junit.framework.TestFailure;
 import junit.framework.TestResult;
 
-import android.app.ActivityManager;
-import android.app.Instrumentation;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -31,69 +19,36 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.test.AndroidTestRunner;
 import android.test.InstrumentationTestRunner;
-import junit.textui.ResultPrinter;
 
 public class MyRunner extends InstrumentationTestRunner {
 
 	GradingAndroidTestRunner androidRunner;
 	final String assignmentName = "Assignment1";
 	final String[] partIDs = new String[] { "hvSBXixt" };
+	//new String[] { "hvSBXixttt" }; // for testing wrong assignment
+	final int partIndex = 0;
 	final String[] partNames = new String[] { "Part1" };
 	final String timeKey = assignmentName + "time";
-	final int maxSubmissionIntervalSec = 30;
-
-	// static Runnable r;
-	// static String resultToSubmit;
-	// static String submissionResult;
-	// static String resultFilePath;
-	// static CountDownLatch finishLatch;
+	final int maxSubmissionIntervalSec = 5;// 30;
+	final String submissionInfoFile = "submissionInfo.txt";
 
 	@Override
 	public void onCreate(Bundle arguments) {
-		// System.out.println("On Create: HEYYYYY!");
 		super.onCreate(arguments);
-
 	}
 
 	@Override
 	public void onStart() {
-		System.out.println("On Start: HEYYYYY!");
-		// PrintStream stream;
-		// try {
-		// stream = new
-		// PrintStream("/Users/samira_tasharofi/Documents/result.txt");
-		// ResultPrinter submitPrinter = new ResultPrinter(System.out);
-		// androidRunner.addTestListener(submitPrinter);
-		//
-		//
-		// } catch (FileNotFoundException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
 		super.onStart();
 	}
 
 	@Override
 	public void start() {
-
 		super.start();
-
 	}
 
 	protected AndroidTestRunner getAndroidTestRunner() {
-		// System.out.println("Create RUNNER! ");
 		androidRunner = new GradingAndroidTestRunner();
-		// ResultPrinter submitPrinter;
-		// try {
-		// submitPrinter = new ResultPrinter(new PrintStream("result.txt"));
-		// androidRunner.addTestListener(submitPrinter);
-		//
-		// } catch (FileNotFoundException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
 		return androidRunner;
 	}
 
@@ -119,118 +74,200 @@ public class MyRunner extends InstrumentationTestRunner {
 			System.out.println("****** FAILED TEST: " + failure.failedTest());
 
 		}
-		System.out.println(" ******* "
-				+ results.getString(Instrumentation.REPORT_KEY_STREAMRESULT));
 
 		int currResult = testResult.runCount() - testResult.failureCount();
+		int prefectScore = testResult.runCount();
 
 		Context runnerContext = androidRunner.getContext();
+		String submissionResult = "";
 
 		if (runnerContext != null) {
-			String prevResult = runnerContext.getSharedPreferences(
-					"TestResults", 0).getString(assignmentName, "0");
-			long prevTimeSec = runnerContext.getSharedPreferences(
-					"TestResults", 0).getLong(timeKey, 0);
-			System.out.println(" **************** Prev RESULT: " + prevResult);
-			System.out.println(" **************** Prev TIME: " + prevTimeSec);
 
-			long currTimeSec = System.currentTimeMillis() / 1000;
-			System.out.println(" **************** Cur TIME: " + currTimeSec);
+			Submitter submitter = new Submitter(assignmentName, partNames,
+					partIDs);
 
-			
-			String submissionResult = "";
+			String[] credential = readCredential(runnerContext);
+			if (credential.length > 1) {
+				String[] challenge = submitter.getChallenge(partIndex,
+						credential);
 
-			if (Integer.parseInt(prevResult) < currResult
-					|| (currTimeSec - prevTimeSec) > maxSubmissionIntervalSec) {
-				String resultToSubmit = String.valueOf(currResult);
-				Submitter submitter = new Submitter();
-				submissionResult = submitter.submit(resultToSubmit);
-				runnerContext.getSharedPreferences("TestResults", 0).edit()
-						.putString(assignmentName, resultToSubmit).commit();
-				runnerContext.getSharedPreferences("TestResults", 0).edit()
-						.putLong(timeKey, currTimeSec).commit();
-				
-				browserPOST(runnerContext, submissionResult);
+				if (challenge != null) {
 
+					String prevResult = runnerContext.getSharedPreferences(
+							"TestResults", 0).getString(
+							credential[0] + assignmentName, "-1");
 
+					long prevTimeSec = runnerContext.getSharedPreferences(
+							"TestResults", 0).getLong(credential[0] + timeKey,
+							0);
+
+					long currTimeSec = System.currentTimeMillis() / 1000;
+
+					/*
+					 * Only submits the answer if the current score is greater
+					 * than the last submitted score or the scores are the same
+					 * and difference between current submission time and
+					 * previous submission is more than the threshold.
+					 */
+					submissionResult += String
+							.format("<p>Submission feedback for user %s and assignment %s - part %s: </p>",
+									credential[0], assignmentName, partNames[partIndex]);
+
+					if (Integer.parseInt(prevResult) < currResult
+							|| (Integer.parseInt(prevResult) == currResult &&
+							(currTimeSec - prevTimeSec) > maxSubmissionIntervalSec) ){
+
+						submissionResult += String.format(
+								"<p> Your score is %s out of %s.</p>",
+								currResult, prefectScore);
+
+						String resultToSubmit = String.valueOf(currResult);
+
+						if (credential.length > 1) {
+							submissionResult += submitter.submit(
+									resultToSubmit, partIndex, credential,
+									challenge);
+
+							runnerContext
+									.getSharedPreferences("TestResults", 0)
+									.edit()
+									.putString(credential[0] + assignmentName,
+											resultToSubmit).commit();
+							runnerContext
+									.getSharedPreferences("TestResults", 0)
+									.edit()
+									.putLong(credential[0] + timeKey,
+											currTimeSec).commit();
+
+						}
+
+					} else if (Integer.parseInt(prevResult) >= currResult) {
+						System.out.println(" No need to resubmit");
+						submissionResult += String
+								.format("<p>Your new submission score is %s out of %s and the maximum score of your previous submissions is %s.</p>",
+										currResult, prefectScore, prevResult);
+						submissionResult += "<p>No need to resbmit; your new submission score is is not higher than the previous submissions score.</p>";
+					}
+				} else {
+					submissionResult += String.format(
+							Messages.GETTING_CHALLENGE_ERROR_TEMPLATE,
+							assignmentName,partNames[partIndex]);
+				}
+			} else {
+				// There is an error in parsing email and password or opening
+				// the submission info file.
+				submissionResult += credential[0];
 			}
-			else if(Integer.parseInt(prevResult) > currResult){
-				submissionResult = "No need to resbmit; your new submission score is lower than previous submissions";
-				browserPOST(runnerContext, submissionResult);
-
-			}
-			
 
 		} else {
+			submissionResult += Messages.NULL_CONTEXT;
 			System.err.println("The context is null .... ");
 		}
+
+		System.out.println(submissionResult);
+		if (!submissionResult.equals(""))
+			showTheResultsInBrowser(runnerContext, submissionResult);
 
 		super.finish(resultCode, results);
 	}
 
-	private void browserPOST(Context context, String submissionResult) {
-		//
-		// Runnable r = new Runnable() {
-		// @Override
-		// public void run() {
-		//
-		// Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-		// Uri.parse("http://www.google.com"));
-		// browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		// context.startActivity(browserIntent);
-		// }
-		// };
-		// Thread t = new Thread(r);
-		// t.start();
-		// try {
-		// t.join();
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+	private String[] readCredential(Context runnerContext) {
+		String[] credential = new String[2];
 
 		try {
-			String submissionHtmlFile = "submission.html";
-			FileOutputStream file = context.openFileOutput(submissionHtmlFile,
+			System.out.println(runnerContext.getAssets().list("."));
+			BufferedReader submissionInfoReader = new BufferedReader(
+					new InputStreamReader(runnerContext.getAssets().open(
+							submissionInfoFile)));
+			String line;
+			while ((line = submissionInfoReader.readLine()) != null) {
+				line = line.trim().replace(" ", "");
+				if (line.contains("Email=") && credential[0] == null) {
+					credential[0] = line.replace("Email=", "").trim();
+				} else if (line.contains("Password=") && credential[1] == null) {
+					credential[1] = line.replace("Password=", "").trim();
+				}
+			}
+			if (credential[0] == null || credential[1] == null
+					|| credential[0].length() == 0
+					|| credential[1].length() == 0) {
+				return new String[] { Messages.ILL_FORMATTED_INFOFILE };
+			}
+
+		} catch (IOException e) {
+			return new String[] { Messages.MISSING_SUBMISSIONINFOFILE };
+		}
+		return credential;
+	}
+
+	private void showTheResultsInBrowser(Context context,
+			String submissionResult) {
+		String content = String
+				.format("<html><head><title>Submission Results</title></head><body>%s</body></html>",
+						submissionResult);
+
+		Intent i = new Intent();
+		i.setComponent(new ComponentName("com.android.browser",
+				"com.android.browser.BrowserActivity"));
+		i.setAction(Intent.ACTION_VIEW);
+
+		try {
+
+			String baseName = "SubmissionResult";
+			String htmlFileName = nextUniqueBaseName(context, baseName);// "submission.html";
+
+			FileOutputStream htmlWriter = context.openFileOutput(htmlFileName,
 					context.MODE_WORLD_READABLE);
-
 			System.out.println(context.getFilesDir());
-			System.out.println(context.getFileStreamPath(submissionHtmlFile)
-					.getAbsolutePath());
-
-			String content = String.format("<html><head><title>Submission Results</title></head><body>%s</body></html>", submissionResult);
-
-			file.write(content.getBytes());
-			file.close();
-
-			Intent i = new Intent();
-			// MUST instantiate android browser, otherwise it won't work (it
-			// won't find an activity to satisfy intent)
-			i.setComponent(new ComponentName("com.android.browser",
-					"com.android.browser.BrowserActivity"));
-			i.setAction(Intent.ACTION_VIEW);
-
-			// String html =
-			// "<html><head><title>Submission Results</title></head><body>Check your Connection/ Congrats!!! Congrats!!</body></html>";
-			// // May work without url encoding, but I think is advisable
-			// // URLEncoder.encode replace space with "+", must replace again
-			// with
-			// // %20
-			// String dataUri = "data:text/html," +
-			// html.replaceAll("\\+","%20");
-
-			i.setData(Uri.fromFile(context.getFileStreamPath(submissionHtmlFile)));// .parse(dataUri));
+			htmlWriter.write(content.getBytes());
+			htmlWriter.close();
+			i.setData(Uri.fromFile(context.getFileStreamPath(htmlFileName)));
 
 			// need to set new task flag !?
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			
-			
 			context.startActivity(i);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			// May work without url encoding, but I think is advisable
+			// URLEncoder.encode replace space with "+", must replace again with
+			// %20
+			String dataUri = "data:text/html,"
+					+ URLEncoder.encode(content).replaceAll("\\+", "%20");
+			i.setData(Uri.parse(dataUri));
+
+			// need to set new task flag !?
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+			context.startActivity(i);
 		}
+	}
+
+	private String nextUniqueBaseName(Context context, String base) {
+		int max = 0;
+		final int baseLen = base.length();
+
+		for (String name : context.getFilesDir().list()) {
+			if (!name.startsWith(base))
+				continue;
+			max = Math.max(max, extractPositiveInteger(name, baseLen));
+			context.deleteFile(name);
+		}
+		return base + (max + 1);
+	}
+
+	private int extractPositiveInteger(final String line, int index) {
+		final int lineLen = line != null ? line.length() : 0;
+		int val = 0;
+		while (index >= 0 && index < lineLen) {
+			final char c = line.charAt(index++);
+			// Character.isDigit() is too lenient, we only want 0..9
+			if (c >= '0' && c <= '9')
+				val = val * 10 + (c - '0');
+			else
+				break;
+		}
+		return val;
 	}
 
 }

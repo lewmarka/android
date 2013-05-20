@@ -1,0 +1,25 @@
+
+The tested situations:
+
+1. The new score is higher than or equal to the maximum of previous submission scores. 
+If the new score is higher, it will be submitted. If the new score is equal to the max of
+previous submissions and the time difference is higher than some threshold, then the new 
+score will be submitted.
+
+2. The new score is smaller than previous submission scores: the new score won't be submitted.
+
+3. The submissionInfo.txt is in a wrong format: no submission and an error message will be given
+to the user indicating error in parsing the submissionInfo file.
+
+4. The submissionInfo.txt is missing: no submission and and error message will be given indicating
+error in reading the file. 
+
+5. The email/password in the submissionInfo.txt is incorrect: no submission and an error message
+will be given to the user indicating an error in validating email and password.
+
+6. The assignment/part ID is incorrect: no submission and and error message will be given 
+indicating wrong assignment/part.
+
+7. Unsuccessful creation of file in internal storage:
+
+8. no internet connection:

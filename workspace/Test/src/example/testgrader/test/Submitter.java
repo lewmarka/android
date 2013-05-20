@@ -18,118 +18,110 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 public class Submitter {
 
-	String[] partIDs = new String[] { "hvSBXixt" };
-	String[] partNames = new String[] { "Part1" };
+	String[] partNames;
+	String[] partIDs;
+	String assignmentName;
 
-	String logPath = "/Users/samira_tasharofi/Documents/workspace-coursera/Test/logcat.txt";
-	String runnerScriptPath = "/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/testrunner.sh";
-	String deviceScriptPath = "/Users/samira_tasharofi/Documents/workspace-coursera/Submitter/src/devicechecker.sh";
+	public Submitter(String assignmentName, String[] partNames, String[] partIDs) {
+		this.assignmentName = assignmentName;
+		this.partNames = partNames;
+		this.partIDs = partIDs;
+	}
 
-	public String submit(String testResult) {
-//		System.out.println(String.format("==\n== Submitting Solutions"
-//				+ " | Programming Exercise %s\n==", homework_id()));
+	public String[] getChallenge(int partIndex, String[] credential){
+		
+		String error = null;
+//		List<Integer> submitParts = new ArrayList<Integer>();
+//		if (partIndex == partIDs.length) {
+//			for (int i = 0; i < partIDs.length; i++) {
+//				submitParts.add(new Integer(i));
+//			}
+//		} else {
+//			submitParts.add(new Integer(partIndex));
+//		}
+		String login = credential[0];
+
+//		for (Integer part : submitParts) {
+			// Get Challenge
+			String[] loginChSignature = getChallenge(login, partIndex);
+			if (loginChSignature == null) {
+				error = String
+						.format("<p>Error in getting the challenge for user %s and part %s. Make sure that the email and the specified assignment part is correct.</p>",
+								login, partIndex);
+				System.out.println(error);
+			}
+			if (loginChSignature != null)
+			System.out.println("Getting the challenge: "+loginChSignature[0]+loginChSignature[1]);
+//		}
+		return loginChSignature;
+	}
+	public String submit(String testResult, int partIndex, String[] credential, String[] loginChSignature) {
 
 		String submissionResult = "";
-		int partId = promptPart();
-		if (!isValidPartId(partId)) {
-			submissionResult = "!! Invalid homework part selected.\n"+
-					String.format(
-							"!! Expected an integer from 1 to %d.",
-							partIDs.length + 1)+"\n"+
-							"!! Submission Cancelled";
-							
-			System.err.println("!! Invalid homework part selected.");
-			System.err
-					.println(String.format(
-							"!! Expected an integer from 1 to %d.",
-							partIDs.length + 1));
-			System.err.println("!! Submission Cancelled");
-			return submissionResult;
-		}
-
-		String[] loginPassword = loginPrompt();
-		String login = loginPassword[0];
-		String password = loginPassword[1];
-
-		if (login == null || login.equals("")) {
-			submissionResult = "!! Submission Cancelled";
-			System.out.println("!! Submission Cancelled");
-			return submissionResult;
-		}
+		String login = credential[0];
+		String password = credential[1];
 
 		System.out.print("\n== Connecting to coursera ... ");
 
-		// Setup submit list
-		List<Integer> submitParts = new ArrayList<Integer>();
-		if (partId == partIDs.length + 1) {
-			for (int i = 0; i < partIDs.length; i++) {
-				submitParts.add(new Integer(i));
-			}
-		} else {
-			submitParts.add(new Integer(partId - 1));
-		}
+		// Setup the list of parts and sections needed to be submitted
+//		List<Integer> submitParts = new ArrayList<Integer>();
+//		if (partIndex == partIDs.length) {
+//			for (int i = 0; i < partIDs.length; i++) {
+//				submitParts.add(new Integer(i));
+//			}
+//		} else {
+//			submitParts.add(new Integer(partIndex));
+//		}
 
-		for (Integer part : submitParts) {
+		int part = partIndex;
+//		for (Integer part : submitParts) {
 			// Get Challenge
-			String[] loginChSignature = getChallenge(login, part);
-			if (loginChSignature == null) {
-				submissionResult = "Cannot get challenge";
-				return submissionResult;
-			}
+//			String[] loginChSignature = getChallenge(login, part);
+//			if (loginChSignature == null) {
+//				submissionResult += String
+//						.format("<p>Error in getting the challenge for user %s and part %s. Make sure that the email and the specified assignment part is correct.</p>",
+//								login, part);
+//				return submissionResult;
+//			}
+
 			login = loginChSignature[0];
 			String ch = loginChSignature[1];
 			String signature = loginChSignature[2];
 			String ch_aux = loginChSignature[3];
 
+
 			// Attempt Submission with Challenge
 			String ch_resp = challengeResponse(login, password, ch);
-			String result = submitSolution(login, ch_resp, part.intValue(),
-					/*output(part, ch_aux)*/testResult, /*source(part)*/"", signature);
-			if (result == null) {
-				result = "NULL RESPONSE";
+			String response = submitSolution(login, ch_resp, part,
+					testResult, /* source(part) */"", signature);
+
+			// Null response may receive if the answer is incorrect and there is no feedback for that
+			if (response == null) {
+				response = "Your solution does not match with the expected solution. Please try again.";
+			}
+			if (response
+					.trim()
+					.equals("Exception: We could not verify your username / password, please try again. (Note that your password is case-sensitive.)")) {
+				//submissionResult += "<p>The password is incorrect. Note that the pasword is a 10 character alphanumeric string displayed on the top of the Assignments page.</p>";
+				//submissionResult += "<p>Please correct it in \"submissionInfo.txt\" file which is in \"assets\" folder and resubmit.</p>";
+				return Messages.INCORRECT_EMAIL_PASSWORD;
 			}
 			
 			submissionResult += String.format(
-					"\n== Submitted Homework %s - Part %s ", homework_id(),
-					partNames[part])+ "\n"+
-					"== " + result;
-		
-			System.out.println(String.format(
-					"\n== Submitted Homework %s - Part %s ", homework_id(),
-					partNames[part]));
-			System.out.println("== " + result);
-			if (result
-					.trim()
-					.equals("Exception: We could not verify your username / password, please try again. (Note that your password is case-sensitive.)")) {
-				System.out
-						.println("== The password is not your login, but a 10 character alphanumeric string displayed on the top of the Assignments page.");
-			}
-			
-//		     File resultFile = new File(resultFilePath);
-//		     
-//		     System.out.println(resultFile.getAbsolutePath());
-//
-//			
-//			try {
-//				FileWriter writer = new FileWriter(resultFile);
-//				writer.write(result);
-//				writer.close();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+					"<p>Submitted successfully.</p>")
+					+ "\n";
 
-		}
+			submissionResult += String.format("<p>Feedback: %s</p>",response);
+			submissionResult += "<p>================= </p>";
+
+//		}
 		return submissionResult;
-	}
-
-	private String homework_id() {
-		return "Assignment1";
 	}
 
 	private List<List<String>> sources() {
@@ -152,162 +144,33 @@ public class Submitter {
 		return "https://class.coursera.org/androidapps101-001/assignment/submit";
 	}
 
-//	protected String output(int partId, String ch_aux) {
-//
-//		Runtime rt = Runtime.getRuntime();
-//		try {
-//
-//			Process deviceChecker = rt.exec(deviceScriptPath);
-//			deviceChecker.waitFor();
-//			BufferedReader reader = new BufferedReader(new InputStreamReader(
-//					deviceChecker.getInputStream()));
-//			
-//			//this line is "List of devices attached"
-//			String line = reader.readLine();
-//			
-//			/*The next lines indicate the list of devices running.
-//			 * If there is no second line, no device is attached, 
-//			 * then throw error and exit.
-//			 */
-//			line = reader.readLine();
-//			if (line == null || !line.contains("device")) {
-//				System.out.println("line"+line);
-//				System.err.println("Error! No device is attached! Please run a device and try again.");
-//				return "";
-//			}
-//
-//			Process testrunner = rt.exec(runnerScriptPath);
-//			testrunner.waitFor();
-//			int r = testrunner.exitValue();
-//			reader = new BufferedReader(new InputStreamReader(
-//					testrunner.getErrorStream()));
-//			String errorLine;
-//			while ((errorLine = reader.readLine()) != null) {
-//				System.err.println(errorLine);
-//			}
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		String result = parseLogFile(logPath);
-//
-//		return result;
-//	}
-
-//	private String parseLogFile(String log) {
-//
-//		String result = "";
-//		String returnedResult = "";
-//
-//		String testCaseTag = "****** TEST CASE: ";
-//		String failedTag = "****** FAILED COUNT: ";
-//		String passTag = "****** PASSED COUNT: ";
-//
-//		try {
-//			BufferedReader logReader = new BufferedReader(new FileReader(log));
-//			String line;
-//
-//			try {
-//				while ((line = logReader.readLine()) != null) {
-//					if (line.contains(failedTag)) {
-//						result += "F:"
-//								+ line.substring(line.indexOf(failedTag)
-//										+ failedTag.length());
-//						result += ";";
-//					}
-//					if (line.contains(passTag)) {
-//						returnedResult = line.substring(line.indexOf(passTag)
-//								+ passTag.length());
-//						result += "P:" + returnedResult;
-//					}
-//				}
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		System.out.println("The result is " + result);
-//
-//		// TODO Auto-generated method stub
-//		return returnedResult;
-//	}
-
 	// ========================= CHALLENGE HELPERS =========================
 
 	private String source(int partId) {
 		StringBuffer src = new StringBuffer();
-//		List<List<String>> src_files = sources();
-//		if (partId < src_files.size()) {
-//			List<String> flist = src_files.get(partId);
-//			for (String fname : flist) {
-//				try {
-//					BufferedReader reader = new BufferedReader(new FileReader(
-//							fname));
-//					String line;
-//					while ((line = reader.readLine()) != null) {
-//						src.append(line);
-//					}
-//					reader.close();
-//					src.append("||||||||");
-//				} catch (IOException e) {
-//					System.err.println(String.format(
-//							"!! Error reading file '%s': %s", fname,
-//							e.getMessage()));
-//					return src.toString();
-//				}
-//			}
-//		}
+		// List<List<String>> src_files = sources();
+		// if (partId < src_files.size()) {
+		// List<String> flist = src_files.get(partId);
+		// for (String fname : flist) {
+		// try {
+		// BufferedReader reader = new BufferedReader(new FileReader(
+		// fname));
+		// String line;
+		// while ((line = reader.readLine()) != null) {
+		// src.append(line);
+		// }
+		// reader.close();
+		// src.append("||||||||");
+		// } catch (IOException e) {
+		// System.err.println(String.format(
+		// "!! Error reading file '%s': %s", fname,
+		// e.getMessage()));
+		// return src.toString();
+		// }
+		// }
+		// }
 		src.append("");
 		return src.toString();
-	}
-
-	private boolean isValidPartId(int partId) {
-		return (partId >= 1 && partId <= partIDs.length + 1);
-	}
-
-	private int promptPart() {
-		int partId = -1;
-//		System.out.println("== Select which part(s) to submit:");
-//		List<List<String>> srcFiles = sources();
-//		StringBuffer prompt = new StringBuffer();
-//		for (int i = 1; i < partIDs.length + 1; i++) {
-//			prompt.append(String.format("==  %d) %s [", i, partNames[i - 1]));
-//			List<String> srcs = srcFiles.get(i - 1);
-//			for (String src : srcs) {
-//				prompt.append(String.format(" %s ", src));
-//			}
-//			prompt.append("]\n");
-//		}
-//		prompt.append(String.format("==  %d) All of the above \n",
-//				partIDs.length + 1));
-//		prompt.append(String.format("==\nEnter your choice [1-%d]: ",
-//				partIDs.length + 1));
-//		System.out.println(prompt.toString());
-//		try {
-//			BufferedReader in = new BufferedReader(new InputStreamReader(
-//					System.in));
-//			String line = in.readLine();
-//			partId = Integer.parseInt(line);
-//			if (!isValidPartId(partId)) {
-//				partId = -1;
-//			}
-//		} catch (Exception e) {
-//			System.err.println("!! Error reading partId from stdin: "
-//					+ e.getMessage());
-//			return -1;
-//		}
-		partId = 1;
-		return partId;
 	}
 
 	// Returns [email,ch,signature]
@@ -355,6 +218,7 @@ public class Submitter {
 		} catch (Exception e) {
 			System.err.println("Error getting challenge from server: "
 					+ e.getMessage());
+			return null;
 		}
 		return results;
 	}
@@ -391,7 +255,6 @@ public class Submitter {
 			while ((line = in.readLine()) != null) {
 				str += line + " ";
 			}
-			// str = in.readLine();
 			in.close();
 
 		} catch (Exception e) {
@@ -402,32 +265,6 @@ public class Submitter {
 		return str;
 	}
 
-	// =========================== LOGIN HELPERS ===========================
-
-	// Returns [login, password]
-	private String[] loginPrompt() {
-		String[] results = new String[2];
-		results[0] = "tasharo1@illinois.edu";
-		results[1] = "BQjD3aRBJs";
-//		try {
-//			// System.out.print("Login (Email address): ");
-//			System.out.println("Login (Email address): ");
-//			BufferedReader in = new BufferedReader(new InputStreamReader(
-//					System.in));
-//			String line = in.readLine();
-//			results[0] = line.trim();
-//
-//			// System.out.print("Password: ");
-//			System.out.println("Password: ");
-//			line = in.readLine();
-//			results[1] = line.trim();
-//			
-//		} catch (IOException e) {
-//			System.err.println("!! Error prompting for login/password: "
-//					+ e.getMessage());
-//		}
-		return results;
-	}
 
 	private String challengeResponse(String email, String passwd,
 			String challenge) {
@@ -460,10 +297,4 @@ public class Submitter {
 		String encoded = new String(encBytes);
 		return encoded;
 	}
-
-//	public static void main(String[] args) {
-//
-//		Submit submit = new Submit();
-//		submit.submit(0);
-//	}
 }
